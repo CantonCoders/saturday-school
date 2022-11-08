@@ -1,13 +1,49 @@
 package org.example.strings;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.example.strings.StringProperties.*;
 
 public class IsUniqueTest {
 
     @Test
-    public void test() {
-        assertThat(1+1).isEqualTo(2);
+    public void noCharactersIsUnique() {
+        assertThat(isUnique("")).isTrue();
+    }
+
+    @Test
+    public void singleCharacterIsUnique() {
+        assertThat(isUnique("A")).isTrue();
+    }
+
+    @Test
+    public void twoDistinctCharactersIsUnique() {
+        assertThat(isUnique("AB")).isTrue();
+    }
+
+    @Test
+    @Disabled
+    public void twoIdenticalCharactersNotUnique() {
+        assertThat(isUnique("AA")).isFalse();
+    }
+
+    @Test
+    @Disabled
+    public void sameCharacterUpperAndLowerCaseIsUnique() {
+        assertThat(isUnique("Aa")).isTrue();
+    }
+
+    @Test
+    @Disabled
+    public void largeStringIsUnique() {
+        assertThat(isUnique("Math Problem")).isTrue();
+    }
+
+    @Test
+    @Disabled
+    public void largeStringIsNotUnique() {
+        assertThat(isUnique("Math Major")).isFalse();
     }
 }
