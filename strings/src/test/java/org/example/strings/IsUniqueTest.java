@@ -24,7 +24,6 @@ public class IsUniqueTest {
     }
 
     @Test
-    @Disabled
     public void twoIdenticalCharactersNotUnique() {
         assertThat(isUnique("AA")).isFalse();
     }
