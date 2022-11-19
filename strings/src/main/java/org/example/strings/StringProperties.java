@@ -1,7 +1,5 @@
 package org.example.strings;
 
-import java.util.Arrays;
-
 public class StringProperties {
 
     static public boolean isUnique(String string) {
