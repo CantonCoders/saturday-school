@@ -9,7 +9,7 @@ the tests one by to implement the functionality.
 ## Is Unique
 
 Given a string, implement a method that determines if it contains unique characters. This method
-will be case sensitive. For example, "Aa" is unique but "AA" is unique. 
+will be case sensitive. For example, "Aa" is unique but "AA" is not unique. 
 
 **Extra Credit:**
 * Create a second method that ignores character case and spaces.

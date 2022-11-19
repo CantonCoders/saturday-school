@@ -20,7 +20,13 @@ public class CheckPermutationTest {
 
     @Test
     @Disabled
-    public void stringsAreNotPermutations() {
+    public void sameSizedStringsAreNotPermutations() {
+        assertThat(checkPermutation("mage", "mace")).isFalse();
+    }
+
+    @Test
+    @Disabled
+    public void diffSizedStringsAreNotPermutations() {
         assertThat(checkPermutation("mage", "games")).isFalse();
     }
 
