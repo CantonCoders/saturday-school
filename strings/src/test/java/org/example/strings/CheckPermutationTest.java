@@ -4,53 +4,54 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.example.strings.StringProperties.checkPermutation;
+import static org.example.strings.Permutation.isPermutation;
 
 public class CheckPermutationTest {
 
     @Test
     public void equalStringsArePermutations() {
-        assertThat(checkPermutation("dog", "dog")).isTrue();
+        assertThat(isPermutation("dog", "dog")).isTrue();
     }
 
     @Test
     public void stringsArePermutations() {
-        assertThat(checkPermutation("game", "mage")).isTrue();
-        assertThat(checkPermutation("mage", "game")).isTrue();
+        assertThat(isPermutation("game", "mage")).isTrue();
+        assertThat(isPermutation("mage", "game")).isTrue();
     }
 
     @Test
+    @Disabled
     public void sameSizedStringsAreNotPermutations() {
-        assertThat(checkPermutation("mace", "mage")).isFalse();
-        assertThat(checkPermutation("mage", "mace")).isFalse();
+        assertThat(isPermutation("mace", "mage")).isFalse();
+        assertThat(isPermutation("mage", "mace")).isFalse();
     }
 
     @Test
     @Disabled
     public void diffSizedStringsAreNotPermutations() {
-        assertThat(checkPermutation("mage", "games")).isFalse();
-        assertThat(checkPermutation("games", "mage")).isFalse();
+        assertThat(isPermutation("mage", "games")).isFalse();
+        assertThat(isPermutation("games", "mage")).isFalse();
     }
 
     @Test
     @Disabled
     public void duplicateLettersThatAreNotPermutations() {
-        assertThat(checkPermutation("magge", "gaame")).isFalse();
-        assertThat(checkPermutation("gaame", "magge")).isFalse();
+        assertThat(isPermutation("magge", "gaame")).isFalse();
+        assertThat(isPermutation("gaame", "magge")).isFalse();
     }
 
     @Test
     @Disabled
     public void spacesWithEqualsNumberOfSpaces() {
-        assertThat(checkPermutation("ga me", " mage")).isTrue();
-        assertThat(checkPermutation(" mage", "ga me")).isTrue();
+        assertThat(isPermutation("ga me", " mage")).isTrue();
+        assertThat(isPermutation(" mage", "ga me")).isTrue();
     }
 
     @Test
     @Disabled
     public void spacesWithDifferentNumberOfSpaces() {
-        assertThat(checkPermutation("ga  me", "mage ")).isFalse();
-        assertThat(checkPermutation("mage ", "ga  me")).isFalse();
+        assertThat(isPermutation("ga  me", "mage ")).isFalse();
+        assertThat(isPermutation("mage ", "ga  me")).isFalse();
     }
 
 }

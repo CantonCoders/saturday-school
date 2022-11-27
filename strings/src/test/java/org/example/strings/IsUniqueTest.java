@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.example.strings.StringProperties.*;
+import static org.example.strings.Unique.*;
 
 public class IsUniqueTest {
 
@@ -24,6 +24,7 @@ public class IsUniqueTest {
     }
 
     @Test
+    @Disabled
     public void twoIdenticalCharactersNotUnique() {
         assertThat(isUnique("AA")).isFalse();
     }
