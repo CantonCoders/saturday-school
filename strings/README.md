@@ -22,6 +22,6 @@ Given two strings, write a method that checks if one is a permutation of another
 
 **Extra Credit:**
 * Create two different algorithms checking for permutations.
-* Create a second check permutation method that ignores case. ***Do not*** use a 
-***flag*** parameter to change the behavior of the existing method.
+* Create a second check permutation method that ignores case. 
+(Do not use a flag parameter to change the behavior of the existing method.)
 

@@ -32,6 +32,12 @@ public class CheckPermutationTest {
 
     @Test
     @Disabled
+    public void duplicateLettersAreNotPermutations() {
+        assertThat(checkPermutation("mage", "gaame")).isFalse();
+    }
+
+    @Test
+    @Disabled
     public void spacesWithEqualsNumberOfSpaces() {
         assertThat(checkPermutation(" mage", "ga me")).isTrue();
     }
