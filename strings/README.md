@@ -42,8 +42,16 @@ Since Java String is immutable, this implementation will use a `char` array for 
 **Extra Credit:**
 * Add logic that handles leading and trailing spaces. 
 
-**Examples**
+**Example:**
 * Input:  `"Canton Coders  "`
 * Output: `"Canton%20Coders"`
 
 ## Palindrome Permutation
+
+Implement the method that checks if a string is a palindrome permutation. The palindrome is not limited to dictionary words. It will ignore case and non-letter characters. A palindrome is a word or phrase that is the same both forward and backwards. A palindrome permutation is the rearrangement of those characters that can be the same both forward and backwords. 
+
+**Example:**
+* String 1: `"Race car"`
+* String 2: `"Car race"`
+
+String 2 is a Palindrome Permutation as it is a permutation of String 1, which is a palindrome.  
