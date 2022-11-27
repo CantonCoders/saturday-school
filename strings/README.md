@@ -39,12 +39,12 @@ Implement the method to replace all spaces in a String with `'%20'`. This must b
 
 Since Java String is immutable, this implementation will use a `char` array for implementing an in-place algorithm.
 
-**Extra Credit:**
-* Add logic that handles leading and trailing spaces. 
-
 **Example:**
 * Input:  `"Canton Coders  "`
 * Output: `"Canton%20Coders"`
+
+**Extra Credit:**
+* Add logic that handles leading and trailing spaces. 
 
 ## Palindrome Permutation
 
@@ -55,3 +55,14 @@ Implement the method that checks if a string is a palindrome permutation. The pa
 * String 2: `"Car race"`
 
 String 2 is a Palindrome Permutation as it is a permutation of String 1, which is a palindrome.  
+
+## One Away
+
+Given two strings, there are three types of edits performed to make the two strings equal: Insert a character, remove a character, or replace a character. Implement a method that determines if one or fewer edits is necessary to make the two given strings equal.
+
+**Examples:**
+* `dream`, `dream` -> `True` (No edits needed)
+* `deam`, `dream` -> `True` (One Insert needed)
+* `dea`, `dream` -> `False` (Two Inserts needed)
+* `dreamy`, `dream` -> `True` (One Remove needed)
+* `drean`, `drean` -> `True` (One Replace needed)
