@@ -4,14 +4,16 @@ Each assignment has an existing number of unit tests. Some are passing and other
 
 # Homework
 
+For these exercises, the character sets are assumed to be ASCII. 
+
 ## Is Unique
 
-Given a string, implement a method that determines if it contains unique characters. This method will be case sensitive. For example, "Aa" is unique but "AA" is not unique. 
+Given a string, implement the method to determine if the string contains all unique characters. This method will be case sensitive. For example, "Aa" is unique but "AA" is not unique. 
 
 **Extra Credit:**
 * Create a second method that ignores character case and spaces.
 * Implement the algorithm without the help of String utility classes.
-* Implement without using other second data structures. 
+* Implement without using additional data structures. 
 
 ## Check Permutation
 
