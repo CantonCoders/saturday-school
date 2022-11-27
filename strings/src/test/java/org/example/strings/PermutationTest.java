@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.example.strings.Permutation.isPermutation;
 
-public class CheckPermutationTest {
+public class PermutationTest {
 
     @Test
     public void equalStringsArePermutations() {

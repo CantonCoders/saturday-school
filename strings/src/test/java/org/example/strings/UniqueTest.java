@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.example.strings.Unique.*;
 
-public class IsUniqueTest {
+public class UniqueTest {
 
     @Test
     public void noCharactersIsUnique() {

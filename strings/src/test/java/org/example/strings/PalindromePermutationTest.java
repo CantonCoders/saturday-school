@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.example.strings.PalindromePermutation.isPalindromePermutation;
 
-public class CheckPalindromPermutationTest {
+public class PalindromePermutationTest {
 
     @Test
     public void singleWordPalindrome() {
