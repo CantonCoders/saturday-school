@@ -19,6 +19,7 @@ public class UniqueTest {
     }
 
     @Test
+    @Disabled
     public void twoDistinctCharactersIsUnique() {
         assertThat(isUnique("AB")).isTrue();
     }
@@ -38,12 +39,21 @@ public class UniqueTest {
     @Test
     @Disabled
     public void largeStringIsUnique() {
-        assertThat(isUnique("Math Problem")).isTrue();
+        var str = new StringBuilder();
+        for (int i = 0; i < 128; i++) {
+            str.append((char) i);
+        }
+        assertThat(isUnique(str.toString())).isTrue();
     }
 
     @Test
     @Disabled
     public void largeStringIsNotUnique() {
-        assertThat(isUnique("Math Major")).isFalse();
+        var str = new StringBuilder();
+        for (int i = 0; i < 128; i++) {
+            str.append((char) i);
+        }
+        str.append('z');
+        assertThat(isUnique(str.toString())).isFalse();
     }
 }

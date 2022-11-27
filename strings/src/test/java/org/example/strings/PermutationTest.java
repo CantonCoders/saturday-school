@@ -14,9 +14,21 @@ public class PermutationTest {
     }
 
     @Test
-    public void stringsArePermutations() {
-        assertThat(isPermutation("game", "mage")).isTrue();
-        assertThat(isPermutation("mage", "game")).isTrue();
+    public void permutationAllowsSpaces() {
+        assertThat(isPermutation("my dog", "my dog")).isTrue();
+    }
+
+    @Test
+    @Disabled
+    public void permutationIsCaseSensitive() {
+        assertThat(isPermutation("dog", "Dog")).isFalse();
+    }
+
+    @Test
+    @Disabled
+    public void permutationsAreEqualInLength() {
+        assertThat(isPermutation("game", "games")).isFalse();
+        assertThat(isPermutation("games", "game")).isFalse();
     }
 
     @Test
@@ -28,9 +40,9 @@ public class PermutationTest {
 
     @Test
     @Disabled
-    public void diffSizedStringsAreNotPermutations() {
-        assertThat(isPermutation("mage", "games")).isFalse();
-        assertThat(isPermutation("games", "mage")).isFalse();
+    public void permutationOfUnequalStrings() {
+        assertThat(isPermutation("game", "mage")).isTrue();
+        assertThat(isPermutation("mage", "game")).isTrue();
     }
 
     @Test
@@ -42,14 +54,7 @@ public class PermutationTest {
 
     @Test
     @Disabled
-    public void spacesWithEqualsNumberOfSpaces() {
-        assertThat(isPermutation("ga me", " mage")).isTrue();
-        assertThat(isPermutation(" mage", "ga me")).isTrue();
-    }
-
-    @Test
-    @Disabled
-    public void spacesWithDifferentNumberOfSpaces() {
+    public void spacesWithUnequalNumberOfSpaces() {
         assertThat(isPermutation("ga  me", "mage ")).isFalse();
         assertThat(isPermutation("mage ", "ga  me")).isFalse();
     }
