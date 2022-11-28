@@ -1,1 +1,1 @@
-# saturday-mentoring-java
+# Saturday School
