@@ -66,3 +66,13 @@ Given two strings, there are three types of edits performed to make the two stri
 * `dea`, `dream` -> `False` (Two Inserts needed)
 * `dreamy`, `dream` -> `True` (One Remove needed)
 * `drean`, `drean` -> `True` (One Replace needed)
+
+## Compression
+
+Implement the method to use basic string compression using counts of repeating characters. The method will return the compressed string if it's shorter than the original string, otherwise it returns the original string. Assume the string contains only upper and lowercase letters. 
+
+**Examples**
+* `"aa"` returns `"aa"`
+* `"aaa"` returns `"a3"`
+* `"aaabb"` returns `"a3b2"`
+* `"aabb"` returns `"aabb"` (The compressed string is equal length to the original.)
