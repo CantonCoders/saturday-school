@@ -58,6 +58,7 @@ public class RemoveDuplicatesTest {
 //        validateWithRange(node, "Cat", "Dog", "dog", "Bear", "Bird");
     }
 
+    @SafeVarargs
     private <E> void validateWithRange(LinkedListNode<E> node, E ...expected) {
         var actual = new ArrayList<E>();
 
