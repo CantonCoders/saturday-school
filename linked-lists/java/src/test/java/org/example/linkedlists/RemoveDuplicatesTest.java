@@ -7,34 +7,45 @@ import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RemoveDupsTest {
+/**
+ * Remove the duplicate elements from a Linked List. When removing
+ * duplicate elements, always retain the first instance.
+ */
+public class RemoveDuplicatesTest {
 
     @Test
     public void thereCanBeOnlyOne() {
         var node = LinkedListNode.buildLinkedList(1);
-        RemoveDups.remove(node);
+        RemoveDuplicates.remove(node);
         validateWithRange(node, 1);
     }
 
     @Test
     public void noDuplicates() {
         var node = LinkedListNode.buildLinkedList(1, 2, 3, 4, 5);
-        RemoveDups.remove(node);
+        RemoveDuplicates.remove(node);
         validateWithRange(node, 1, 2, 3, 4, 5);
     }
 
     @Test
     public void onePairedDuplicate() {
         var node = LinkedListNode.buildLinkedList(1, 1, 2, 3, 4, 5);
-        RemoveDups.remove(node);
+        RemoveDuplicates.remove(node);
         validateWithRange(node, 1, 2, 3, 4, 5);
     }
 
     @Test
     public void oneNonPairedDuplicate() {
         var node = LinkedListNode.buildLinkedList(1, 2, 10, 9, 1, 5);
-        RemoveDups.remove(node);
+        RemoveDuplicates.remove(node);
         validateWithRange(node, 1, 2, 10, 9, 5);
+    }
+
+    @Test
+    public void twoNonPairedDuplicate() {
+        var node = LinkedListNode.buildLinkedList(5, 1, 2, 10, 9, 1, 5);
+        RemoveDuplicates.remove(node);
+        validateWithRange(node, 5, 1, 2, 10, 9);
     }
 
     /* EXTRA CREDIT */
