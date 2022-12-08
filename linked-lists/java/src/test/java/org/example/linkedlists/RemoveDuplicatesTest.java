@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.example.linkedlists.LinkedListAssert.validateWithRange;
 
 /**
  * Remove the duplicate elements from a Linked List. When removing
@@ -56,18 +57,6 @@ public class RemoveDuplicatesTest {
 //        var node = LinkedListNode.buildLinkedList("Cat", "Dog", "dog", "Cat", "Dog", "Bear", "Bird");
 //        RemoveDups.remove(node);
 //        validateWithRange(node, "Cat", "Dog", "dog", "Bear", "Bird");
-    }
-
-    @SafeVarargs
-    private <E> void validateWithRange(LinkedListNode<E> node, E ...expected) {
-        var actual = new ArrayList<E>();
-
-        actual.add(node.getElement());
-        while (node.hasNext()) {
-            node = node.getNext();
-            actual.add(node.getElement());
-        }
-        assertThat(actual).containsExactly(expected);
     }
 
 
