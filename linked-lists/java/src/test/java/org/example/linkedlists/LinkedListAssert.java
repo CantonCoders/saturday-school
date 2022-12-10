@@ -19,4 +19,16 @@ public class LinkedListAssert {
         assertThat(actual).containsExactly(expected);
     }
 
+    @SafeVarargs
+    public static <E> void validateListContains(LinkedListNode<E> node, E... expected) {
+        var actual = new ArrayList<E>();
+
+        actual.add(node.getElement());
+        while (node.hasNext()) {
+            node = node.getNext();
+            actual.add(node.getElement());
+        }
+        assertThat(actual).contains(expected);
+    }
+
 }

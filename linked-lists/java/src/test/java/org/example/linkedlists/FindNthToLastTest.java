@@ -43,4 +43,11 @@ public class FindNthToLastTest {
         var node = FindNode.findNthFromEnd(5, head);
         assertThat(node.getElement()).isEqualTo(1);
     }
+
+    @Test
+    public void nthIsLargerThanList() {
+        var head = LinkedListNode.buildLinkedList(1, 2, 4, 3, 7, 10);
+        var node = FindNode.findNthFromEnd(6, head);
+        assertThat(node).isNull();
+    }
 }

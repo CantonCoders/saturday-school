@@ -3,8 +3,6 @@ package org.example.linkedlists;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.example.linkedlists.LinkedListAssert.validateWithRange;
 
@@ -50,16 +48,16 @@ public class RemoveDuplicatesTest {
     }
 
     /* EXTRA CREDIT */
-    /* Refactor the method to take a LinkedListNode with an element that extends Object */
-    @Test
-    @Disabled
-    public void makeTheMethodGeneric() {
+    /*
+     * Refactor the method to take a LinkedListNode with an element that extends
+     * Object
+     */
+//    @Test
+//    public void makeTheMethodGeneric() {
 //        var node = LinkedListNode.buildLinkedList("Cat", "Dog", "dog", "Cat", "Dog", "Bear", "Bird");
-//        RemoveDups.remove(node);
+//        RemoveDuplicates.remove(node);
 //        validateWithRange(node, "Cat", "Dog", "dog", "Bear", "Bird");
-    }
-
-
+//    }
 
     /* TEST for the LinkedListNode builder function */
     @Test
@@ -81,6 +79,5 @@ public class RemoveDuplicatesTest {
         assertThat(node3.getElement()).isEqualTo(3);
 
     }
-
 
 }
