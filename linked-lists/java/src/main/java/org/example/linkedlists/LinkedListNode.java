@@ -1,8 +1,6 @@
 package org.example.linkedlists;
 
-import java.util.Arrays;
-
-public class LinkedListNode<T> {
+public class LinkedListNode<T> implements Node<T> {
     private final T element;
     private LinkedListNode<T> next;
     private LinkedListNode<T> previous;
@@ -11,8 +9,9 @@ public class LinkedListNode<T> {
         this.element = element;
     }
 
-    public static <E> LinkedListNode<E> buildLinkedList(E ...elements) {
-        var firstNode = new LinkedListNode<E>(elements[0]);
+    @SafeVarargs
+    public static <E> LinkedListNode<E> buildLinkedList(E... elements) {
+        var firstNode = new LinkedListNode<>(elements[0]);
 
         var node = firstNode;
         boolean first = true;
