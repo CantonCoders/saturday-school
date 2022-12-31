@@ -86,3 +86,13 @@ This exercise is opposite the previous exercise, and is actually more challengin
 * Add list A and B would create the linked list `1 -> 0 -> 3 -> 5 -> 8` representing 10,358.
 
 **The Hard Way:** Can you implement an algorithm that doesn't simply convert the lists to an Integer?
+
+## Palindrome
+
+`PalindromeTest`
+
+Checks if the linked list is a palindrome. 
+
+**Example:**
+* `1 -> 2 -> 3 -> 2 -> 1` is a palindrome
+* `2 -> 1 -> 3 -> 2 -> 1` is not a palindrome
