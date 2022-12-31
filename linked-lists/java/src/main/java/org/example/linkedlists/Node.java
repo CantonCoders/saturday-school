@@ -6,4 +6,5 @@ public interface Node<T> {
     boolean hasNext();
 
     Node<T> getNext();
+
 }

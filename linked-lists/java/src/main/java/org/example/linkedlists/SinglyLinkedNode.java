@@ -41,4 +41,12 @@ public class SinglyLinkedNode<T> implements Node<T> {
     public void setNext(SinglyLinkedNode<T> node) {
         this.next = node;
     }
+
+    @Override
+    public String toString() {
+        return "SinglyLinkedNode{" +
+                "element=" + element +
+                ", next=" + next +
+                '}';
+    }
 }
