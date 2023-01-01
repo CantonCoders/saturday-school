@@ -110,3 +110,14 @@ The two linked lists intersect at the node containing the element `5`. It's impo
                          5 -> 2 -> 7
 1 -> 3 -> 5 -> 11 -> 14 ^
 ```
+## Loop Detection
+
+`LoopDetectionTest`
+
+Determine if a linked list has a loop and return the loop intersecting node. A looped list is when the tail of the list is pointing back to a previous node. Creating an infinite loop when traversing.
+
+**Examples:**
+* `1, 3, 11, 12, 3` has a loop intersection at `3`.
+* `11, 12, 23, 91, 100, 21, 48, 100` has a loop intersection at `100`
+
+The loop intersection is by node reference.

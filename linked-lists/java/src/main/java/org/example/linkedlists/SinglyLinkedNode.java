@@ -45,8 +45,9 @@ public class SinglyLinkedNode<T> implements Node<T> {
     @Override
     public String toString() {
         return "SinglyLinkedNode{" +
-                "element=" + element +
-                ", next=" + next +
+                "ref=" + System.identityHashCode(this) +
+                ", element=" + element +
+                ", hasNext=" + hasNext() +
                 '}';
     }
 }
