@@ -2,11 +2,9 @@ package org.example.stackqueues;
 
 import java.util.EmptyStackException;
 
-public class FixedStack {
-
+public class FlexibleStack {
     private Object[] data;
-
-    public FixedStack(int capacity) {
+    public FlexibleStack(int capacity) {
         this.data = new Object[capacity];
     }
 
