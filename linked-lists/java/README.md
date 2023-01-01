@@ -96,3 +96,17 @@ Checks if the linked list is a palindrome.
 **Example:**
 * `1 -> 2 -> 3 -> 2 -> 1` is a palindrome
 * `2 -> 1 -> 3 -> 2 -> 1` is not a palindrome
+
+## Intersecting Linked Lists
+
+`IntersectionTest`
+
+Find the intersecting node of two singly linked lists.
+
+**Example:**
+The two linked lists intersect at the node containing the element `5`. It's important to note there are to instances of element `5`. Intersection is determined by reference to a node, not the value. 
+```
+          5 -> 13 -> 14 ˅ 
+                         5 -> 2 -> 7
+1 -> 3 -> 5 -> 11 -> 14 ^
+```
