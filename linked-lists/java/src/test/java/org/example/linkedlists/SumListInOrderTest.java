@@ -33,6 +33,8 @@ public class SumListInOrderTest {
 
     @Test
     public void returnCoverOverAtUnequalListLength() {
+        //   0 312
+        // + 8,367
         var list1 = SinglyLinkedNode.buildLinkedList(3, 1, 2);
         var list2 = SinglyLinkedNode.buildLinkedList(8, 3, 6, 7);
         var sum = SumListInOrder.addSum(list1, list2);
@@ -49,6 +51,8 @@ public class SumListInOrderTest {
 
     @Test
     public void returnCoverOverAtUnequalListLengthByTwo() {
+        // 9,846
+        // 0 097
         var list1 = SinglyLinkedNode.buildLinkedList(9, 8, 4, 6);
         var list2 = SinglyLinkedNode.buildLinkedList(9, 7);
         var sum = SumListInOrder.addSum(list1, list2);
