@@ -110,4 +110,18 @@ public class FlexibleStackTest {
         assertThat(stack.search("Canton Coders")).isEqualTo(2);
         assertThat(stack.search(300)).isEqualTo(3);
     }
+
+    @Test
+    public void canPopAtRemovesTheElementAtGivenPosition() {
+        var stack = new FlexibleStack(3);
+        stack.push(300);
+        stack.push("Canton Coders");
+        stack.push('A');
+
+        var position = stack.search("Canton Coders");
+        assertThat(stack.popAt(position)).isEqualTo("Canton Coders");
+
+        assertThat(stack.getBackingArray()).isEqualTo(new Object[] { 300, 'A', null });
+    }
+
 }

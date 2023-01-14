@@ -3,13 +3,11 @@ package org.example.stackqueues;
 import java.util.EmptyStackException;
 
 public class FlexibleStack {
-    private Object[] data;
     public FlexibleStack(int capacity) {
-        this.data = new Object[capacity];
     }
 
     public Object[] getBackingArray() {
-        return data;
+        return null;
     }
 
     public void push(Object object) {
@@ -33,5 +31,9 @@ public class FlexibleStack {
 
     public int search(Object object) {
         return -1;
+    }
+
+    public Object popAt(int position) {
+        return null;
     }
 }

@@ -1,17 +1,15 @@
 package org.example.stackqueues;
 
-import java.util.EmptyStackException;
-
 public class FixedStack {
 
-    private Object[] data;
-
     public FixedStack(int capacity) {
-        this.data = new Object[capacity];
+    }
+
+    public FixedStack(Object[] data) {
     }
 
     public Object[] getBackingArray() {
-        return data;
+        return null;
     }
 
     public void push(Object object) {
@@ -34,6 +32,14 @@ public class FixedStack {
     }
 
     public int search(Object object) {
+        return -1;
+    }
+
+    public Object popAt(int position) {
+        return null;
+    }
+
+    public int size() {
         return -1;
     }
 }

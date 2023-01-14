@@ -78,7 +78,7 @@ public class FixedStackTest {
     }
 
     @Test
-    public void peekingAtEmptyStackThrowsExcetion() {
+    public void peekingAtEmptyStackThrowsException() {
         var stack = new FixedStack(3);
         assertThrows(EmptyStackException.class, stack::peek);
     }
@@ -101,5 +101,37 @@ public class FixedStackTest {
         assertThat(stack.search('A')).isEqualTo(1);
         assertThat(stack.search("Canton Coders")).isEqualTo(2);
         assertThat(stack.search(300)).isEqualTo(3);
+    }
+
+    @Test
+    public void canPopAtRemovesTheElementAtGivenPosition() {
+        var stack = new FixedStack(9);
+        stackPushValues(stack, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+        assertThat(stack.popAt(6)).isEqualTo(4);
+
+        assertThat(stack.getBackingArray()).isEqualTo(new Object[] { 1, 2, 3, 5, 6, 7, 8, 9, null });
+    }
+
+    @Test
+    public void tracksNumberOfItemsOnTheStack() {
+        var stack = new FixedStack(20);
+        stackPushValues(stack, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+        assertThat(stack.size()).isEqualTo(9);
+
+        stack.push(10);
+        assertThat(stack.size()).isEqualTo(10);
+
+        stack.pop();
+        stack.pop();
+        stack.pop();
+        assertThat(stack.size()).isEqualTo(7);
+    }
+
+    private void stackPushValues(FixedStack stack, int ...values) {
+        for (var value : values) {
+            stack.push(value);
+        }
     }
 }
