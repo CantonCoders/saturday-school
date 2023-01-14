@@ -1,45 +1,43 @@
 package org.example.stackqueues;
 
-public class FixedStack {
+public class FixedStack extends ArrayStack {
+
+    protected Object[] memory;
+    private int index;
 
     public FixedStack(int capacity) {
+        memory = new Object[capacity];
+        index = 0;
     }
 
-    public FixedStack(Object[] data) {
+    @Override
+    public Object[] getMemory() {
+        return memory;
     }
 
-    public Object[] getBackingArray() {
-        return null;
+    @Override
+    protected int getIndex() {
+        return index;
     }
 
-    public void push(Object object) {
+    @Override
+    protected void incrementIndex() {
+        index++;
     }
 
-    public Object pop() {
-        return null;
+    @Override
+    protected void decrementIndex() {
+        index--;
     }
 
-    public Object peek() {
-        return null;
-    }
-
+    @Override
     public boolean isFull() {
-        return false;
+        return index == getMemory().length;
     }
 
+    @Override
     public boolean isEmpty() {
-        return false;
+        return index == 0;
     }
 
-    public int search(Object object) {
-        return -1;
-    }
-
-    public Object popAt(int position) {
-        return null;
-    }
-
-    public int size() {
-        return -1;
-    }
 }

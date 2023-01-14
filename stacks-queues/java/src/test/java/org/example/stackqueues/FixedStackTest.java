@@ -92,15 +92,17 @@ public class FixedStackTest {
      * used to compare o to the items in this stack.
      */
     public void searchingReturnsOneBasedPositionOfObject() {
-        var stack = new FixedStack(3);
+        var stack = new FixedStack(5);
         stack.push(300);
         stack.push("Canton Coders");
         stack.push('A');
+        stack.push('B');
+        stack.push('C');
 
         assertThat(stack.search("Not found")).isEqualTo(-1);
-        assertThat(stack.search('A')).isEqualTo(1);
-        assertThat(stack.search("Canton Coders")).isEqualTo(2);
-        assertThat(stack.search(300)).isEqualTo(3);
+        assertThat(stack.search('A')).isEqualTo(3);
+        assertThat(stack.search("Canton Coders")).isEqualTo(4);
+        assertThat(stack.search(300)).isEqualTo(5);
     }
 
     @Test
@@ -111,6 +113,15 @@ public class FixedStackTest {
         assertThat(stack.popAt(6)).isEqualTo(4);
 
         assertThat(stack.getBackingArray()).isEqualTo(new Object[] { 1, 2, 3, 5, 6, 7, 8, 9, null });
+    }
+
+    @Test
+    public void popAtOutOfBoundsIndex() {
+        var stack = new FixedStack(9);
+        stackPushValues(stack, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+        assertThrows(StackOutOfBoundsException.class, () -> stack.popAt(0));
+        assertThrows(StackOutOfBoundsException.class, () -> stack.popAt(10));
     }
 
     @Test
@@ -129,7 +140,7 @@ public class FixedStackTest {
         assertThat(stack.size()).isEqualTo(7);
     }
 
-    private void stackPushValues(FixedStack stack, int ...values) {
+    private void stackPushValues(FixedStack stack, int... values) {
         for (var value : values) {
             stack.push(value);
         }

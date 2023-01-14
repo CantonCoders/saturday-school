@@ -54,12 +54,20 @@ public class ThreeInOneFixedStackTest {
         pushToSecondStack(stacks, 2011, 2012);
         pushToThirdStack(stacks, 2013);
 
+        var expected = new Object[]{
+                1011, 1012, 1013,
+                2011, 2012, null,
+                2013, null, null
+        };
+        assertThat(stacks.getBackingArray()).isEqualTo(expected);
+
+
         assertThat(stacks.pop(StackNumber.ONE)).isEqualTo(1013);
         assertThat(stacks.pop(StackNumber.TWO)).isEqualTo(2012);
         assertThat(stacks.pop(StackNumber.THREE)).isEqualTo(2013);
 
         var backingArray = stacks.getBackingArray();
-        var expected = new Object[]{
+        expected = new Object[]{
                 1011, 1012, null,
                 2011, null, null,
                 null, null, null
