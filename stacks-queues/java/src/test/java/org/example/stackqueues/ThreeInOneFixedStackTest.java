@@ -9,21 +9,23 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ThreeInOneFixedStackTest {
 
+    private ThreeInOneFixedStack<Integer> stacks;
+
     @Test
     public void allocatesMemoryForTheStacks() {
-        var stacks = new ThreeInOneFixedStack(90);
+        stacks = new ThreeInOneFixedStack<>(90);
         assertThat(stacks.getBackingArray().length).isEqualTo(90);
     }
 
     @Test
     public void allocationMustBeDivisibleByThree() {
-        Exception ex = assertThrows(InvalidAllocationException.class, () -> new ThreeInOneFixedStack(91));
+        Exception ex = assertThrows(InvalidAllocationException.class, () -> new ThreeInOneFixedStack<>(91));
         assertThat(ex.getMessage()).isEqualTo("Allocation size must be divisible by 3.");
     }
 
     @Test
     public void stackInitializesValuesToNull() {
-        var stacks = new ThreeInOneFixedStack(9);
+        stacks = new ThreeInOneFixedStack<>(9);
         var expected = new Object[]{
                 null, null, null,
                 null, null, null,
@@ -34,7 +36,7 @@ public class ThreeInOneFixedStackTest {
 
     @Test
     public void canAddDataToEachStack() {
-        var stacks = new ThreeInOneFixedStack(9);
+        stacks = new ThreeInOneFixedStack<>(9);
         pushToFirstStack(stacks, 1001);
         pushToSecondStack(stacks, 1002);
         pushToThirdStack(stacks, 1003);
@@ -49,7 +51,7 @@ public class ThreeInOneFixedStackTest {
 
     @Test
     public void canPopDataFromEachStack() {
-        var stacks = new ThreeInOneFixedStack(9);
+        stacks = new ThreeInOneFixedStack<>(9);
         pushToFirstStack(stacks, 1011, 1012, 1013);
         pushToSecondStack(stacks, 2011, 2012);
         pushToThirdStack(stacks, 2013);
@@ -77,7 +79,7 @@ public class ThreeInOneFixedStackTest {
 
     @Test
     public void canFillEachStack() {
-        var stacks = new ThreeInOneFixedStack(9);
+        stacks = new ThreeInOneFixedStack<>(9);
         pushToFirstStack(stacks, 1011, 1012, 1013);
         pushToSecondStack(stacks, 2021, 2022, 2023);
         pushToThirdStack(stacks, 3031, 3032, 3033);
@@ -93,7 +95,7 @@ public class ThreeInOneFixedStackTest {
 
     @Test
     public void throwsExceptionWhenStackIsFull() {
-        var stacks = new ThreeInOneFixedStack(9);
+        stacks = new ThreeInOneFixedStack<>(9);
         pushToFirstStack(stacks, 1011, 1012, 1013);
         pushToSecondStack(stacks, 2021, 2022, 2023);
         pushToThirdStack(stacks, 3031, 3032, 3033);
@@ -105,7 +107,7 @@ public class ThreeInOneFixedStackTest {
 
     @Test
     public void throwsExceptionWhenStackIsEmpty() {
-        var stacks = new ThreeInOneFixedStack(3);
+        stacks = new ThreeInOneFixedStack<>(3);
 
         assertThrows(EmptyStackException.class, () -> stacks.pop(StackNumber.ONE));
         assertThrows(EmptyStackException.class, () -> stacks.pop(StackNumber.TWO));
@@ -114,7 +116,7 @@ public class ThreeInOneFixedStackTest {
 
     @Test
     public void canPeekAtEachStackWithoutRemovingData() {
-        var stacks = new ThreeInOneFixedStack(9);
+        stacks = new ThreeInOneFixedStack<>(9);
         pushToFirstStack(stacks, 1011, 1012);
         pushToSecondStack(stacks, 2021, 2022);
         pushToThirdStack(stacks, 3031, 3032);
@@ -132,26 +134,26 @@ public class ThreeInOneFixedStackTest {
 
     @Test
     public void peekAtEmptyListThrowException() {
-        var stacks = new ThreeInOneFixedStack(9);
+        stacks = new ThreeInOneFixedStack<>(9);
 
         assertThrows(EmptyStackException.class, () -> stacks.peek(StackNumber.ONE));
         assertThrows(EmptyStackException.class, () -> stacks.peek(StackNumber.TWO));
         assertThrows(EmptyStackException.class, () -> stacks.peek(StackNumber.THREE));
     }
 
-    private static void pushToFirstStack(ThreeInOneFixedStack stack, Object ...objects) {
+    private static void pushToFirstStack(ThreeInOneFixedStack<Integer> stack, Integer ...objects) {
         for (var object: objects) {
             stack.push(StackNumber.ONE, object);
         }
     }
 
-    private static void pushToSecondStack(ThreeInOneFixedStack stack, Object ...objects) {
+    private static void pushToSecondStack(ThreeInOneFixedStack<Integer> stack, Integer ...objects) {
         for (var object: objects) {
             stack.push(StackNumber.TWO, object);
         }
     }
 
-    private static void pushToThirdStack(ThreeInOneFixedStack stack, Object ...objects) {
+    private static void pushToThirdStack(ThreeInOneFixedStack<Integer> stack, Integer ...objects) {
         for (var object: objects) {
             stack.push(StackNumber.THREE, object);
         }

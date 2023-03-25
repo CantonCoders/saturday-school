@@ -9,77 +9,80 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FixedStackTest {
 
+
+    private static FixedStack<Integer> newIntegerStackOfSize(int size) {
+        return new FixedStack<>(size);
+    }
+
+    private static FixedStack<String> newStringStackOfSize(int size) {
+        return new FixedStack<>(size);
+    }
+
     @Test
     public void allocatesMemoryForTheStack() {
-        var stack = new FixedStack(100);
+        var stack = newIntegerStackOfSize(100);
         assertTrue(stack.isEmpty());
         assertFalse(stack.isFull());
-        assertThat(stack.getBackingArray().length).isEqualTo(100);
     }
 
     @Test
     public void canPushToTheStack() {
-        var stack = new FixedStack(3);
+        var stack = newIntegerStackOfSize(3);
         stack.push(100);
         assertFalse(stack.isEmpty());
         assertFalse(stack.isFull());
-        assertThat(stack.getBackingArray()).isEqualTo(new Object[] { 100, null, null });
     }
 
     @Test
     public void canFillTheStack() {
-        var stack = new FixedStack(3);
-        stack.push(300);
+        var stack = newStringStackOfSize(3);
+        stack.push("300");
         stack.push("Canton Coders");
-        stack.push('A');
+        stack.push("A");
 
         assertTrue(stack.isFull());
-        assertThat(stack.getBackingArray()).isEqualTo(new Object[] { 300, "Canton Coders", 'A' });
-
     }
 
     @Test
     public void overFillingTheStackThrowsException() {
-        var stack = new FixedStack(1);
+        var stack = newIntegerStackOfSize(1);
         stack.push(300);
-        assertThrows(StackFullException.class, () -> stack.push("Canton Coders"));
+        assertThrows(StackFullException.class, () -> stack.push(400));
     }
 
     @Test
     public void canPopFromTopOfStack() {
-        var stack = new FixedStack(3);
-        stack.push(300);
+        var stack = newStringStackOfSize(3);
+        stack.push("300");
         stack.push("Canton Coders");
-        stack.push('A');
+        stack.push("A");
 
-        assertThat(stack.pop()).isEqualTo('A');
+        assertThat(stack.pop()).isEqualTo("A");
         assertThat(stack.pop()).isEqualTo("Canton Coders");
-
-        assertThat(stack.getBackingArray()).isEqualTo(new Object[] { 300, null, null });
     }
 
     @Test
     public void popFromEmptyStackThrowsException() {
-        var stack = new FixedStack(3);
+        var stack = newIntegerStackOfSize(3);
         assertThrows(EmptyStackException.class, stack::pop);
     }
 
     @Test
     public void canPeekAtTopOfStack() {
-        var stack = new FixedStack(3);
-        stack.push(300);
-        assertThat(stack.peek()).isEqualTo(300);
+        var stack = newStringStackOfSize(3);
+        stack.push("300");
+        assertThat(stack.peek()).isEqualTo("300");
 
         stack.push("Canton Coders");
         assertThat(stack.peek()).isEqualTo("Canton Coders");
 
-        stack.push('A');
-        assertThat(stack.peek()).isEqualTo('A');
+        stack.push("A");
+        assertThat(stack.peek()).isEqualTo("A");
     }
 
     @Test
     public void peekingAtEmptyStackThrowsException() {
-        var stack = new FixedStack(3);
+        var stack = newIntegerStackOfSize(3);
         assertThrows(EmptyStackException.class, stack::peek);
     }
 
@@ -92,32 +95,30 @@ public class FixedStackTest {
      * used to compare o to the items in this stack.
      */
     public void searchingReturnsOneBasedPositionOfObject() {
-        var stack = new FixedStack(5);
-        stack.push(300);
+        var stack = newStringStackOfSize(5);
+        stack.push("300");
         stack.push("Canton Coders");
-        stack.push('A');
-        stack.push('B');
-        stack.push('C');
+        stack.push("A");
+        stack.push("B");
+        stack.push("C");
 
         assertThat(stack.search("Not found")).isEqualTo(-1);
-        assertThat(stack.search('A')).isEqualTo(3);
+        assertThat(stack.search("A")).isEqualTo(3);
         assertThat(stack.search("Canton Coders")).isEqualTo(4);
-        assertThat(stack.search(300)).isEqualTo(5);
+        assertThat(stack.search("300")).isEqualTo(5);
     }
 
     @Test
     public void canPopAtRemovesTheElementAtGivenPosition() {
-        var stack = new FixedStack(9);
+        var stack = newIntegerStackOfSize(9);
         stackPushValues(stack, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 
         assertThat(stack.popAt(6)).isEqualTo(4);
-
-        assertThat(stack.getBackingArray()).isEqualTo(new Object[] { 1, 2, 3, 5, 6, 7, 8, 9, null });
     }
 
     @Test
     public void popAtOutOfBoundsIndex() {
-        var stack = new FixedStack(9);
+        var stack = newIntegerStackOfSize(9);
         stackPushValues(stack, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 
         assertThrows(StackOutOfBoundsException.class, () -> stack.popAt(0));
@@ -126,7 +127,7 @@ public class FixedStackTest {
 
     @Test
     public void tracksNumberOfItemsOnTheStack() {
-        var stack = new FixedStack(20);
+        var stack = newIntegerStackOfSize(20);
         stackPushValues(stack, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 
         assertThat(stack.size()).isEqualTo(9);
@@ -138,6 +139,30 @@ public class FixedStackTest {
         stack.pop();
         stack.pop();
         assertThat(stack.size()).isEqualTo(7);
+    }
+
+    @Test
+    public void shouldReturnTheMinimumValueInTheStack() {
+        var stack = newIntegerStackOfSize(20);
+        stackPushValues(stack, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+        assertThat(stack.min()).isEqualTo(1);
+    }
+
+    @Test
+    public void shouldTrackWhenNewMinimumValuesAreAdded() {
+        var stack = newIntegerStackOfSize(20);
+
+        stackPushValues(stack, 4, 1, 3, 2, 0);
+        // 0, 0
+        // 2, 1
+        // 3, 1
+        // 1, 1
+        // 4, 4
+
+        assertThat(stack.min()).isEqualTo(0);
+        stack.pop();
+        assertThat(stack.min()).isEqualTo(1);
     }
 
     private void stackPushValues(FixedStack stack, int... values) {

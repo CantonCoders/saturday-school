@@ -2,12 +2,12 @@ package org.example.stackqueues;
 
 public class FixedMemoryStack extends ArrayStack {
 
-  private Object[] memory;
+  private StackValue[] memory;
   private int start;
   private int end;
   private int index;
 
-  public FixedMemoryStack(Object[] memory, int start, int end) {
+  public FixedMemoryStack(StackValue[] memory, int start, int end) {
     this.memory = memory;
     this.start = start;
     this.end = end;
@@ -15,7 +15,7 @@ public class FixedMemoryStack extends ArrayStack {
   }
 
   @Override
-  public Object[] getMemory() {
+  public StackValue[] getMemory() {
     return memory;
   }
 

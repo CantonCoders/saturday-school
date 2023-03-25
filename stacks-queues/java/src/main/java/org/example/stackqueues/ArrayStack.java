@@ -1,55 +1,98 @@
 package org.example.stackqueues;
 
 import java.util.EmptyStackException;
+import java.util.Objects;
 
-public abstract class ArrayStack {
+public abstract class ArrayStack<T extends Comparable<T>> {
 
-  protected abstract Object[] getMemory();
+    public static class StackValue<T extends Comparable<T>> {
+        T value;
+        T min;
+
+        public StackValue(T value, T min) {
+            this.value = value;
+            if (min == null || value.compareTo(min) < 0) {
+                this.min = value;
+            } else {
+                this.min = min;
+            }
+        }
+
+        public boolean valueEquals(T value) {
+            return this.value.compareTo(value) == 0;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Comparable<?> that)) return false;
+            return Objects.equals(value, that);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(value);
+        }
+
+        @Override
+        public String toString() {
+            return value.toString();
+        }
+    }
+
+  protected abstract StackValue<T>[] getMemory();
   protected abstract int getIndex();
   protected abstract void incrementIndex();
   protected abstract void decrementIndex();
 
-  public Object[] getBackingArray() {
-    return getMemory();
-  }
-
-  public void push(Object object) {
+  public void push(T object) {
       if (isFull()) throw new StackFullException();
 
-      getMemory()[getIndex()] = object;
+      T minValue = null;
+      if (!isEmpty()) {
+          minValue = min();
+      }
+
+      getMemory()[getIndex()] = new StackValue<>(object, minValue);
       incrementIndex();
   }
 
-  public Object pop() {
+    public T min() {
+        if (isEmpty()) throw new EmptyStackException();
+
+        return getMemory()[getIndex() - 1].min;
+    }
+
+  public T pop() {
       if (isEmpty()) throw new EmptyStackException();
 
       decrementIndex();
       var object = getMemory()[getIndex()];
       getMemory()[getIndex()] = null;
-      return object;
+      return object.value;
   }
 
-  public Object peek() {
+  public T peek() {
       if (isEmpty()) throw new EmptyStackException();
 
-      return getMemory()[getIndex() - 1];
+      return getMemory()[getIndex() - 1].value;
   }
 
   public abstract boolean isFull();
 
   public abstract boolean isEmpty();
 
-  public int search(Object object) {
+  public int search(T object) {
       for (int i = 0; i < getIndex(); i++) {
-          if (object.equals(getMemory()[i])) {
+          if (getMemory()[i].valueEquals(object)) {
               return getMemory().length - i;
           }
       }
       return -1;
   }
 
-  public Object popAt(int position) {
-      var object = peekAt(position);
+  public T popAt(int position) {
+      T object = peekAt(position);
 
       for (; position > 1; position--) {
           var i = getMemory().length - position;
@@ -60,10 +103,10 @@ public abstract class ArrayStack {
       return object;
   }
 
-  private Object peekAt(int position) {
+  private T peekAt(int position) {
       if (position < 1 || position > getMemory().length) throw new StackOutOfBoundsException();
 
-      return getMemory()[getMemory().length - position];
+      return getMemory()[getMemory().length - position].value;
   }
 
   public int size() {

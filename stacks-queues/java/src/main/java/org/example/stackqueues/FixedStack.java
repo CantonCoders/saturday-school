@@ -1,17 +1,17 @@
 package org.example.stackqueues;
 
-public class FixedStack extends ArrayStack {
+public class FixedStack<T extends Comparable<T>> extends ArrayStack<T> {
 
-    protected Object[] memory;
+    protected StackValue<T>[] memory;
     private int index;
 
     public FixedStack(int capacity) {
-        memory = new Object[capacity];
+        memory = new StackValue[capacity];
         index = 0;
     }
 
     @Override
-    public Object[] getMemory() {
+    public StackValue<T>[] getMemory() {
         return memory;
     }
 
