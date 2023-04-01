@@ -165,6 +165,48 @@ public class FixedStackTest {
         assertThat(stack.min()).isEqualTo(1);
     }
 
+    @Test
+    public void shouldSortSmallerOfTwoItems() {
+        var stack = newIntegerStackOfSize(20);
+
+        stackPushValues(stack, 0, 4);
+        stack.sort();
+
+        assertThat(stack.pop()).isEqualTo(0);
+        assertThat(stack.pop()).isEqualTo(4);
+        assertThat(stack.isEmpty()).isTrue();
+    }
+
+    @Test
+    public void shouldSortSmallerOfThreeItems() {
+        var stack = newIntegerStackOfSize(20);
+
+        stackPushValues(stack, 0, -1, 4);
+        stack.sort();
+
+        assertThat(stack.pop()).isEqualTo(-1);
+        assertThat(stack.pop()).isEqualTo(0);
+        assertThat(stack.pop()).isEqualTo(4);
+        assertThat(stack.isEmpty()).isTrue();
+    }
+
+    @Test
+    public void shouldSortSmallerOfManyItems() {
+        var stack = newIntegerStackOfSize(20);
+
+        stackPushValues(stack, 0, -1, 4, 2, 9, 4, 3);
+        stack.sort();
+
+        assertThat(stack.pop()).isEqualTo(-1);
+        assertThat(stack.pop()).isEqualTo(0);
+        assertThat(stack.pop()).isEqualTo(2);
+        assertThat(stack.pop()).isEqualTo(3);
+        assertThat(stack.pop()).isEqualTo(4);
+        assertThat(stack.pop()).isEqualTo(4);
+        assertThat(stack.pop()).isEqualTo(9);
+        assertThat(stack.isEmpty()).isTrue();
+    }
+
     private void stackPushValues(FixedStack stack, int... values) {
         for (var value : values) {
             stack.push(value);
