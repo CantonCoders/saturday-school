@@ -194,7 +194,7 @@ public class FixedStackTest {
     public void shouldSortSmallerOfManyItems() {
         var stack = newIntegerStackOfSize(20);
 
-        stackPushValues(stack, 0, -1, 4, 2, 9, 4, 3);
+        stackPushValues(stack, -1, 4, 2, 9, 4, 3, 0);
         stack.sort();
 
         assertThat(stack.pop()).isEqualTo(-1);

@@ -42,26 +42,15 @@ public class FixedStack<T extends Comparable<T>> extends ArrayStack<T> {
 
     public void sort() {
         var temp = new FixedStack<T>(this.getMemory().length);
-        // if top of temp is empty -> push to temp
-        temp.push(pop());
-
         while (!isEmpty()) {
             var item = pop();
-            sortItemOntoTemp(item, temp);
+            while (!temp.isEmpty() && temp.peek().compareTo(item) > 0) {
+                push(temp.pop());
+            }
+            temp.push(item);
         }
 
         moveTempToStack(temp);
-    }
-
-    private void sortItemOntoTemp(T item, FixedStack<T> temp) {
-        if (temp.peek().compareTo(item) <= 0) {
-            // if top of temp is equal or less -> push to temp
-            temp.push(item);
-        } else {
-            // if top of temp is greater -> move all from temp to stack, push to temp
-            moveTempToStack(temp);
-            temp.push(item);
-        }
     }
 
     private void moveTempToStack(FixedStack<T> temp) {
