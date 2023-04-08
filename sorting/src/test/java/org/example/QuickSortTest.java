@@ -51,6 +51,16 @@ public class QuickSortTest {
     }
 
     @Test
+    public void pivotIsSmallestValue() {
+        testSortArray(new int[] { 8, 5, 9, 7, 0 });
+    }
+
+    @Test
+    public void handlesDuplicateNumbers() {
+        testSortArray(new int[] { 11, 8, 8, 8, 10 });
+    }
+
+    @Test
     public void longEvenLengthArray() {
         testSortArray(new int[] { 5, 9, 2, 0, 8, 1, 4, 7, 3, 6 });
     }
